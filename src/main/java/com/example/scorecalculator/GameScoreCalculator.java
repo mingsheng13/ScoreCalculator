@@ -1,25 +1,6 @@
 package com.example.scorecalculator;
 
 public class GameScoreCalculator {
-    public void setBaseScore(int baseScore) {
-        this.baseScore = baseScore;
-    }
-
-    public void setCollectionScore(int collectionScore) {
-        this.collectionScore = collectionScore;
-    }
-
-    public void setCipherBoardScore(int cipherBoardScore) {
-        this.cipherBoardScore = cipherBoardScore;
-    }
-
-    public void setEndingScore(int endingScore) {
-        this.endingScore = endingScore;
-    }
-
-    public void setDebtPenalty(int debtPenalty) {
-        this.debtPenalty = debtPenalty;
-    }
 
     public void setEmergencyTaskScore(int emergencyTaskScore) { this.emergencyTaskScore = emergencyTaskScore; };
 
@@ -41,7 +22,28 @@ public class GameScoreCalculator {
         this.debtPenalty = debtPenalty;
     }
 
+    public void setBaseScore(int baseScore) {
+        this.baseScore = baseScore;
+    }
+
+    public void setCollectionScore(int collectionScore) {
+        this.collectionScore = collectionScore;
+    }
+
+    public void setCipherBoardScore(int cipherBoardScore) {
+        this.cipherBoardScore = cipherBoardScore;
+    }
+
+    public void setEndingScore(int endingScore) {
+        this.endingScore = endingScore;
+    }
+
+    public void setDebtPenalty(int debtPenalty) {
+        this.debtPenalty = debtPenalty;
+    }
+
     public int calculateTotalScore() {
-        return baseScore + collectionScore + cipherBoardScore + endingScore + emergencyTaskScore - debtPenalty;
+        int totalScore = baseScore + collectionScore + cipherBoardScore + endingScore - debtPenalty;
+        return totalScore;
     }
 }

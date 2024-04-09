@@ -1,0 +1,21 @@
+Index: src/main/java/com/example/scorecalculator/GameScoreCalculator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.scorecalculator;\nimport java.util.HashMap;\nimport java.util.Map;\n\npublic class GameScoreCalculator {\n\n    private int baseScore;\n    private int collectionScore;\n    private int cipherBoardScore;\n    private Map<EmergencyTask, Integer> emergencyTaskScore;\n    private int endingScore;\n    private int debtPenalty;\n\n\n    public GameScoreCalculator(int baseScore, int collectionScore, int cipherBoardScore, int endingScore, int debtPenalty) {\n        this.baseScore = baseScore;\n        this.collectionScore = collectionScore * 10;\n        this.cipherBoardScore = cipherBoardScore * 5;\n        this.emergencyTaskScore = new HashMap<>();\n        this.endingScore = (endingScore - 100) * 50;\n        this.debtPenalty = debtPenalty;\n    }\n\n    public void setBaseScore(int baseScore) {\n        this.baseScore = baseScore;\n    }\n\n    public void setCollectionScore(int collectionScore) {\n        this.collectionScore = collectionScore;\n    }\n\n    public void setCipherBoardScore(int cipherBoardScore) {\n        this.cipherBoardScore = cipherBoardScore;\n    }\n\n    public void setEndingScore(int endingScore) {\n        this.endingScore = endingScore;\n    }\n\n    public void setDebtPenalty(int debtPenalty) {\n        this.debtPenalty = debtPenalty;\n    }\n\n    public void addEmergencyTask(EmergencyTask task) {\n        emergencyTaskScore.put(task, emergencyTaskScore.getOrDefault(task, 0) + task.getScore());\n    }\n\n    public int calculateTotalScore() {\n        int totalEmergencyScore = emergencyTaskScore.values().stream().mapToInt(Integer::intValue).sum();\n        return totalEmergencyScore + baseScore + collectionScore + cipherBoardScore + endingScore - debtPenalty;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/scorecalculator/GameScoreCalculator.java b/src/main/java/com/example/scorecalculator/GameScoreCalculator.java
+--- a/src/main/java/com/example/scorecalculator/GameScoreCalculator.java	(revision 1d5ffe36ba6d11de3991c6b0cbc9e1b423e81ecd)
++++ b/src/main/java/com/example/scorecalculator/GameScoreCalculator.java	(date 1712699752315)
+@@ -17,8 +17,8 @@
+         this.collectionScore = collectionScore * 10;
+         this.cipherBoardScore = cipherBoardScore * 5;
+         this.emergencyTaskScore = new HashMap<>();
+-        this.endingScore = (endingScore - 100) * 50;
+-        this.debtPenalty = debtPenalty;
++        this.endingScore = endingScore;
++        this.debtPenalty = (debtPenalty - 100) * 50;
+     }
+ 
+     public void setBaseScore(int baseScore) {

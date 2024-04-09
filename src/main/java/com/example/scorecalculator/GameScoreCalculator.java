@@ -1,5 +1,7 @@
 package com.example.scorecalculator;
 
+import java.util.ArrayList;
+
 public class GameScoreCalculator {
 
     public void setEmergencyTaskScore(int emergencyTaskScore) { this.emergencyTaskScore = emergencyTaskScore; };
@@ -9,16 +11,16 @@ public class GameScoreCalculator {
     private int cipherBoardScore;
     private int emergencyTaskScore;
     private int endingScore;
-    private int debtPenalty;
+    private int withdraw;
 
     public GameScoreCalculator() {}
 
-    public GameScoreCalculator(int baseScore, int collectionScore, int cipherBoardScore, int endingScore, int debtPenalty) {
+    public GameScoreCalculator(int baseScore, int collectionScore, int cipherBoardScore, int endingScore, int withdraw) {
         this.baseScore = baseScore;
         this.collectionScore = collectionScore * 10;
         this.cipherBoardScore = cipherBoardScore * 5;
-        this.endingScore = (endingScore - 100) * 50;
-        this.debtPenalty = debtPenalty;
+        this.endingScore = endingScore;
+        this.withdraw = withdraw;
     }
 
     public void setBaseScore(int baseScore) {
@@ -37,16 +39,28 @@ public class GameScoreCalculator {
         this.endingScore = endingScore;
     }
 
-    public void setDebtPenalty(int debtPenalty) {
-        this.debtPenalty = debtPenalty;
+    public void setWithdraw(int withdraw) {
+        this.withdraw = withdraw;
     }
 
     public int calculateTotalScore() {
-        return baseScore + collectionScore + cipherBoardScore + endingScore + emergencyTaskScore - debtPenalty;
+        if (withdraw > 100){
+            return baseScore + collectionScore + cipherBoardScore + endingScore + emergencyTaskScore - (withdraw -100) * 50;
+        }
+        else{
+            return baseScore + collectionScore + cipherBoardScore + endingScore + emergencyTaskScore;
+        }
     }
 
     public void addEmergencyTask(int score)
     {
         emergencyTaskScore += score;
+    }
+
+    public void addEmergencyTask(ArrayList<Integer> score)
+    {
+        for (int i = 0; i <= score.size(); ++i){
+            emergencyTaskScore += score.get(i);
+        }
     }
 }

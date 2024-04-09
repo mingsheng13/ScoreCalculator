@@ -15,6 +15,16 @@ public enum EmergencyTask {
         this.score = score;
     }
 
+    public static int getScore(String str)
+    {
+        for (EmergencyTask emergencyTask : EmergencyTask.values())
+        {
+            if (emergencyTask.name.equals(str))
+                return emergencyTask.score;
+        }
+        return 0;
+    }
+
     public String getName() {
         return name;
     }

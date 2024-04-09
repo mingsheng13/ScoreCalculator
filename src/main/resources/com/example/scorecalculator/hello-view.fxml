@@ -21,12 +21,12 @@
     <RowConstraints maxHeight="161.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox prefHeight="0.0" prefWidth="629.0" spacing="100.0" GridPane.rowIndex="1">
+      <HBox prefHeight="0.0" prefWidth="629.0" spacing="80.0" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="Delete Last" />
-            <Button mnemonicParsing="false" text="Check" />
-            <Button mnemonicParsing="false" text="Reset" />
-            <Button mnemonicParsing="false" text="Final Score" />
+            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#onDeleteLastClick" text="Delete Last" />
+            <Button fx:id="reset" mnemonicParsing="false" text="Reset" />
+            <Button fx:id="check" mnemonicParsing="false" onAction="#onSubmitClick" text="Check" />
+            <TextField fx:id="totalScore" />
          </children>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -41,7 +41,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea prefHeight="200.0" prefWidth="200.0" text="THIS is a text area for score." GridPane.columnIndex="1" />
+            <TextArea fx:id="scoreboard" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <VBox prefHeight="291.0" prefWidth="150.0">
@@ -90,12 +90,12 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="cipherboardScore">
+                        <TextField id="cipherboardScore" fx:id="cipherboardScore">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="endingScore" fx:id="cipherboardScore">
+                        <TextField id="endingScore" fx:id="endingScore">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -105,11 +105,23 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <ChoiceBox id="emergencyTaskChoiceBox" fx:id="emergencyTaskChoiceBox" prefHeight="26.0" prefWidth="238.0">
+                        <HBox prefHeight="41.0" prefWidth="207.0">
+                           <children>
+                              <ChoiceBox id="emergencyTaskChoiceBox" fx:id="emergencyTask" prefHeight="56.0" prefWidth="127.0">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </ChoiceBox>
+                              <Button fx:id="emergencyAdd" mnemonicParsing="false" onAction="#onEmergencyAdd" prefHeight="51.0" prefWidth="54.0" text="Add">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
-                        </ChoiceBox>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

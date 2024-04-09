@@ -1,5 +1,7 @@
 package com.example.scorecalculator;
 
+import java.util.ArrayList;
+
 public class GameScoreCalculator {
 
     public void setEmergencyTaskScore(int emergencyTaskScore) { this.emergencyTaskScore = emergencyTaskScore; };
@@ -53,5 +55,12 @@ public class GameScoreCalculator {
     public void addEmergencyTask(int score)
     {
         emergencyTaskScore += score;
+    }
+
+    public void addEmergencyTask(ArrayList<Integer> score)
+    {
+        for (int i = 0; i <= score.size(); ++i){
+            emergencyTaskScore += score.get(i);
+        }
     }
 }

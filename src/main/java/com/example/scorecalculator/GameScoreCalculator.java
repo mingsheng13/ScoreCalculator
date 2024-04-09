@@ -13,11 +13,10 @@ public class GameScoreCalculator {
 
     public GameScoreCalculator() {}
 
-    public GameScoreCalculator(int baseScore, int collectionScore, int cipherBoardScore, int emergencyTaskScore, int endingScore, int debtPenalty) {
+    public GameScoreCalculator(int baseScore, int collectionScore, int cipherBoardScore, int endingScore, int debtPenalty) {
         this.baseScore = baseScore;
         this.collectionScore = collectionScore * 10;
         this.cipherBoardScore = cipherBoardScore * 5;
-        this.emergencyTaskScore = emergencyTaskScore;
         this.endingScore = (endingScore - 100) * 50;
         this.debtPenalty = debtPenalty;
     }
@@ -43,7 +42,11 @@ public class GameScoreCalculator {
     }
 
     public int calculateTotalScore() {
-        int totalScore = baseScore + collectionScore + cipherBoardScore + endingScore - debtPenalty;
-        return totalScore;
+        return baseScore + collectionScore + cipherBoardScore + endingScore + emergencyTaskScore - debtPenalty;
+    }
+
+    public void addEmergencyTask(int score)
+    {
+        emergencyTaskScore += score;
     }
 }

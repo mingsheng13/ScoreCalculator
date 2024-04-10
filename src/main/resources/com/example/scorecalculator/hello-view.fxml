@@ -23,10 +23,15 @@
    <children>
       <HBox prefHeight="0.0" prefWidth="629.0" spacing="80.0" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#onDeleteLastClick" text="Delete Last" />
-            <Button fx:id="reset" mnemonicParsing="false" text="Reset" />
-            <Button fx:id="check" mnemonicParsing="false" onAction="#onSubmitClick" text="Check" />
-            <TextField fx:id="totalScore" />
+            <Button fx:id="deleteLast" mnemonicParsing="false" onAction="#onDeleteLastClick" text="删除最后" />
+            <Button fx:id="reset" mnemonicParsing="false" onAction="#onResetClick" text="重置" />
+            <Button fx:id="check" mnemonicParsing="false" onAction="#onSubmitClick" text="计算" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="总计：" />
+                  <TextField fx:id="totalScore" editable="false" />
+               </children>
+            </HBox>
          </children>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -41,37 +46,37 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextArea fx:id="scoreboard" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <TextArea fx:id="scoreboard" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <VBox prefHeight="291.0" prefWidth="150.0">
                      <children>
-                        <Label text="Base Score">
+                        <Label text="结算分数">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Collection Score">
+                        <Label text="收藏品分数">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Cipherboard Score">
+                        <Label text="密文板分数">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Ending Score">
+                        <Label text="结局分数">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Dept Penalty">
+                        <Label text="负债扣分">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="Emergency Task">
+                        <Label text="紧急/特殊作战加分">
                            <VBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
@@ -80,27 +85,27 @@
                   </VBox>
                   <VBox prefHeight="291.0" prefWidth="227.0">
                      <children>
-                        <TextField fx:id="baseScore">
+                        <TextField fx:id="baseScore" promptText="0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="collectionScore" fx:id="collectionScore">
+                        <TextField id="collectionScore" fx:id="collectionScore" promptText="0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="cipherboardScore" fx:id="cipherboardScore">
+                        <TextField id="cipherboardScore" fx:id="cipherboardScore" promptText="0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="endingScore" fx:id="endingScore">
+                        <TextField id="endingScore" fx:id="endingScore" promptText="0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField id="deptPenalty" fx:id="deptPenalty">
+                        <TextField id="deptPenalty" fx:id="deptPenalty" promptText="0">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
@@ -112,7 +117,7 @@
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>
                               </ChoiceBox>
-                              <Button fx:id="emergencyAdd" mnemonicParsing="false" onAction="#onEmergencyAdd" prefHeight="51.0" prefWidth="54.0" text="Add">
+                              <Button fx:id="emergencyAdd" mnemonicParsing="false" onAction="#onEmergencyAdd" prefHeight="51.0" prefWidth="54.0" text="添加">
                                  <HBox.margin>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </HBox.margin>

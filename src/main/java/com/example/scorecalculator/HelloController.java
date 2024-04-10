@@ -9,13 +9,17 @@ import java.util.NoSuchElementException;
 
 public class HelloController
 {
+
+
     private ArrayList<Integer> emergencyScore;
+
+    private ArrayList<String> info;
 
     @FXML
     private TextField baseScore;
 
     @FXML
-    private TextField collectionsScore;
+    private TextField collectionScore;
 
     @FXML
     private TextField cipherboardScore;
@@ -40,7 +44,8 @@ public class HelloController
     {
         String selected = emergencyTask.getValue();
         int getScore = EmergencyTask.getScore(selected);
-        scoreboard.appendText(selected +" = "+ getScore + "\n");
+        info.add(selected +" = "+ getScore);
+        scoreboard.setText(String.join("\n", info));
         emergencyScore.add(getScore);
     }
 
@@ -50,6 +55,8 @@ public class HelloController
         try
         {
             emergencyScore.removeLast();
+            info.removeLast();
+            scoreboard.setText(String.join("\n", info));
         }
         catch (NoSuchElementException ignored)
         {
@@ -57,16 +64,48 @@ public class HelloController
         }
     }
 
+    private int parseScore(String text)
+    {
+        try
+        {
+            return Integer.parseInt(text);
+        }
+        catch (NumberFormatException ex)
+        {
+            return 0;
+        }
+    }
+
     @FXML
     protected void onSubmitClick(ActionEvent event)
     {
-        int finalTotal = 0;
-        for (int score : emergencyScore)
-        {
-            finalTotal += score;
-        }
-        totalScore.setText(String.valueOf(finalTotal));
+        GameScoreCalculator gameScoreCalculator = new GameScoreCalculator();
+        gameScoreCalculator.setBaseScore(parseScore(baseScore.getText()));
+        gameScoreCalculator.setCollectionScore(parseScore(collectionScore.getText()));
+        gameScoreCalculator.setCipherBoardScore(parseScore(cipherboardScore.getText()));
+        gameScoreCalculator.setEndingScore(parseScore(endingScore.getText()));
+        gameScoreCalculator.setWithdraw(parseScore(deptPenalty.getText()));
+        gameScoreCalculator.addEmergencyTask(emergencyScore);
+        scoreboard.appendText("\n=====结算=====\n");
+        scoreboard.appendText(gameScoreCalculator.toString());
+        int total = gameScoreCalculator.calculateTotalScore();
+        totalScore.setText(String.valueOf(total));
     }
+
+    @FXML
+    protected void onResetClick(ActionEvent event)
+    {
+        baseScore.clear();
+        collectionScore.clear();
+        cipherboardScore.clear();
+        endingScore.clear();
+        deptPenalty.clear();
+        emergencyScore = new ArrayList<>();
+        info = new ArrayList<>();
+        scoreboard.clear();
+        totalScore.clear();
+    }
+
 
     @FXML
     public void initialize()
@@ -78,10 +117,12 @@ public class HelloController
                 EmergencyTask.COMPANY_CONFLICT.getName(),
                 EmergencyTask.ICE_SHADOW.getName()
         );
+        emergencyTask.setValue(EmergencyTask.NETWORK.getName());
     }
 
     public HelloController()
     {
         emergencyScore = new ArrayList<>();
+        info = new ArrayList<>();
     }
 }
